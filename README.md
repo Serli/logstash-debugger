@@ -1,6 +1,6 @@
-<h1>LOGSTASH DEBUGGER</h1>
+<h2>LOGSTASH DEBUGGER</h2>
 
-Play application created to easily test a logstash configuration online.
+<p>Play application created to easily test a logstash configuration online.
 No need to restart your logstash instance or to install logstash on another computer just to test a configuration.
-You just need to enter a line like those you will have as input, and submit your .conf file.
+You just need to enter a line like those you will have as input, and submit your .conf file.</p>
 
