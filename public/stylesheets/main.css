@@ -1,0 +1,22 @@
+body{
+    background-color:rgb(204,202,207);
+}
+
+.borders{
+    box-shadow:-4px 4px 5px grey;
+    background-color:rgb(98,97,99);
+    overflow-y: hidden;
+}
+#test {
+    background-color: red;
+    height: 10%;
+}
+
+
+.round {
+    border-radius: 50%;
+}
+
+div {
+    padding: 5px 0px 0px 5px
+}

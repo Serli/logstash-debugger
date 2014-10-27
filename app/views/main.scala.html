@@ -1,0 +1,52 @@
+@(title: String)
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="public/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="/public/stylesheets/main.css">
+    
+</head>
+<body>
+    <div class='jumbotron'>
+        <header class='row borders'>
+            
+            <h1 class='col-sm-3 col-sm-offset-1'>Mostash</h1>
+        </header>
+        <div class='row'>
+                    <p></p>
+                </div>
+        <section class='row'>
+            <form class='col-sm-5' novalidate>
+                <div class='row borders'>
+                    <h4>1. Entrez votre ligne de log</h4>
+                    <textarea required></textarea>
+                </div>
+                <div class='row'>
+                    <p></p>
+                </div>
+                <div class='row borders'>
+                    <h4>2. Ajoutez votre fichier de configuration</h4>
+                    <input type='file' accept=".conf"/>
+                </div>
+            </form>
+            <aside class='col-sm-6 col-sm-offset-1'>
+                <div class='row borders'>
+                    <h4>3. Voila le résultat !</h4>
+                    <textarea></textarea>
+                </div>
+            </aside>
+        </section>
+        <div class='row'>
+                    <p></p>
+                </div>
+        <footer class='row borders'>
+            <img class='col-sm-3'/>
+            <p class='col-sm-6'>Le blabla du footer</p>
+            <a class='col-sm-3'><img class='round' /></a>
+        </footer>
+        
+    </div>
+</body>
+</html>
