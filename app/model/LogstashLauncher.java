@@ -36,27 +36,18 @@ public class LogstashLauncher {
 	 * @throws InterruptedException 
 	 */
 	public void launchLogstash(String pathToConfFile) throws IOException, InterruptedException{
-		String[] args = new String[]{"agent","-f",pathToConfFile,"-e","input{stdin{}} output{stdout{codec=>rubydebug}}"};
+		String[] args = new String[]{"agent","-e","input{stdin{}} "+pathToConfFile+" output{stdout{codec=>rubydebug}}"};
 		this.container.setArgv(args);
 		container.runScriptlet(PathType.ABSOLUTE,jrubyhome+"logstash/runner.rb");
 	}
     
-	public static void main(String[] args){
-		try {
+	public static void main(String[] args) throws InterruptedException, IOException{
+		
 			ConfigurationCleaner e = new ConfigurationCleaner();
 			String confFilePath = e.createCleanConfigFile(logstashPath+"/logstash.logback3.conf");
 			LogstashLauncher r = new LogstashLauncher();
 			r.launchLogstash(confFilePath);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 		
 	}
 }

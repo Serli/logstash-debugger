@@ -16,16 +16,19 @@ public class ConfigurationCleaner {
 	 * @return the absolute path of the clean configuration file
 	 */
 	public String createCleanConfigFile(String uri){
-		File cleanConfFile = null;
+		//File cleanConfFile = null;
+		String output="";
 		try{
 			File tempConfFile =writeTempConfFile(uri);
-			cleanConfFile = eraseInputOutput(tempConfFile);
+			//cleanConfFile = eraseInputOutput(tempConfFile);
+			output = eraseInputOutput(tempConfFile);
 		}catch (IOException e){
 			System.out.println("Error while getting/creating files during creation of clean configuration file : "+e.getMessage());
 		}catch (Exception e){
 			System.out.println("Error while creating the clean configuration file : "+e.toString() + e.getStackTrace()[0]);
 		}
-		return cleanConfFile.getAbsolutePath();
+		//return cleanConfFile.getAbsolutePath();
+		return output;
 	}
 	
 	/**create a temporary conf file which copies the conf file
@@ -70,18 +73,13 @@ public class ConfigurationCleaner {
 	 * erase the input/output of the temp conf file
 	 * leaving only the filters for the main program to use
 	 */
-	private File eraseInputOutput(File confFile) throws IOException{
+	private String eraseInputOutput(File confFile) throws IOException{
 		
 		Scanner scan = null;
-		File newConfFile = null;
-		FileOutputStream fileOS = null;
 		boolean token = false;
+		String output="";
 		
 		try{
-			
-			
-			newConfFile = new File(LogstashLauncher.logstashPath+"/logstash.logback.conf");			
-			fileOS = new FileOutputStream(newConfFile);
 			
 			scan = new Scanner(confFile);
 			/*if the current read line is an input/output block or contained in one
@@ -93,23 +91,22 @@ public class ConfigurationCleaner {
 				String s = scan.next();
 				if (!token && !(s.contains("input")) && !(s.contains("output")) && !(s.contains("filter"))){
 					s+=NEW_LINE;
-					fileOS.write(s.getBytes());
+					output+=s;
 				}else if (!token && !(s.contains("input") && !(s.contains("output"))) && s.contains("filter")){
 					s+=NEW_LINE;
-					fileOS.write(s.getBytes());
+					output+=s;
 				}else if (token && !(s.contains("input") && !(s.contains("output"))) && s.contains("filter")){
 					token = false;
 					s+=NEW_LINE;
-					fileOS.write(s.getBytes());
+					output+=s;
 				}else{
 					token = true;				
 				}
 			}
 		}finally{
-				fileOS.close();
 				scan.close();
 		}
-		return newConfFile;
+		return output;
 	}
 	
 	
