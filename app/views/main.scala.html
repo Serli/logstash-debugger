@@ -1,4 +1,6 @@
+Form<LogstashConfiguration> configForm = Normalizer.Form.form(LogstashConfiguration.class);
 @(title: String)
+@import model.forms.LogstashConfiguration
 <!DOCTYPE html>
 <html>
 
@@ -22,20 +24,20 @@
                     <p></p>
                 </div>
         <section class='row'>
-            <form class='col-sm-5' novalidate>
-                <div class='row borders'>
-                    <h4>1. Entrez votre ligne de log</h4>
-                    <textarea required></textarea>
-                </div>
-                <div class='row'>
-                    <p></p>
-                </div>
-                <div class='row borders'>
-                    <h4>2. Ajoutez votre fichier de configuration</h4>
-                    <div id='dropBox' class='col-sm-5'></div>
-                    <input id='fileUpload' type='file' accept=".conf" class='col-sm-5'/>
-                </div>
-            </form>
+            
+            @import helper._
+            @implicitField = @{ FieldConstructor(inputFieldConstructorTemplate.f) }
+            
+            @(configForm: Form[LogstashConfiguration])
+            @helper.form(action=routes.Application.submit(), 'class->"col-sm-5", 'args->"novalidate"){
+            
+                
+                @textarea(configForm("input"))
+                
+                
+                @inputFile(configForm("configFile"), 'id->"fileUpload")
+                
+            }
             <aside class='col-sm-6 col-sm-offset-1'>
                 <div class='row borders'>
                     <h4>3. Voila le résultat !</h4>
