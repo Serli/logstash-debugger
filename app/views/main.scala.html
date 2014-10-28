@@ -1,6 +1,5 @@
-Form<LogstashConfiguration> configForm = Normalizer.Form.form(LogstashConfiguration.class);
 @(title: String)
-@import model.forms.LogstashConfiguration
+
 <!DOCTYPE html>
 <html>
 
@@ -12,9 +11,10 @@ Form<LogstashConfiguration> configForm = Normalizer.Form.form(LogstashConfigurat
     <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/bootstrap.min.js")"></script>
     <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
     <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/angular-1.3.0/angular.js")"></script>
+     <script type='text/javascript' src="@routes.Assets.at("javascripts/form/confFormController.js")"></script>
     <script type='text/javascript' src="@routes.Assets.at("javascripts/main.js")"></script>
 </head>
-<body onload="init()">
+<body onload="init()" ng-app='confStash'>
     <div class='jumbotron'>
         <header class='row borders'>
             
@@ -23,21 +23,24 @@ Form<LogstashConfiguration> configForm = Normalizer.Form.form(LogstashConfigurat
         <div class='row'>
                     <p></p>
                 </div>
-        <section class='row'>
-            
-            @import helper._
-            @implicitField = @{ FieldConstructor(inputFieldConstructorTemplate.f) }
-            
-            @(configForm: Form[LogstashConfiguration])
-            @helper.form(action=routes.Application.submit(), 'class->"col-sm-5", 'args->"novalidate"){
-            
-                
-                @textarea(configForm("input"))
-                
-                
-                @inputFile(configForm("configFile"), 'id->"fileUpload")
-                
-            }
+        <section class='row' ng-controller='confStashController'>
+            <form class="col-sm-5" novalidate>
+                <div class='row borders'>
+                    <h4>1. Entrez votre ligne de log</h4>
+                    <textarea ng-model='confForm.input'></textarea>
+                </div>
+                <div class='row'>
+                    <p></p>
+                </div>
+                <div class='row borders'>
+                    <h4>2. Ajoutez votre fichier de configuration</h4>
+                    <div id='dropBox' class='col-sm-12' ></div>
+                    <p>OU</p>
+                    <input type='file' accept=".conf" id='fileUpload' class='col-sm-12' ng-model='confForm.confFile'/>
+                    <button ng-show='isDisabled()' ng-click='submit()'>{{confForm.isDisabled}}</button>
+                    <p>{{confForm | json}}</p>
+                </div>
+            </form>
             <aside class='col-sm-6 col-sm-offset-1'>
                 <div class='row borders'>
                     <h4>3. Voila le résultat !</h4>

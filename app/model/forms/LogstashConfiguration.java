@@ -7,7 +7,7 @@ import java.io.File;
  */
 public class LogstashConfiguration {
 
-    @Required
+    /*@Required
     public String input;
     @Required
     public File configFile;
@@ -19,6 +19,6 @@ public class LogstashConfiguration {
             return ".conf file is missing";
         }
         return null;
-    }
+    }*/
 
 }

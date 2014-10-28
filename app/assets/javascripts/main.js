@@ -14,7 +14,7 @@ var XHR2Uploader = {
         }
     },
     startUpload: function(){
-        XHR2Uploader.xhr.open('POST', '/');
+        XHR2Uploader.xhr.open('POST', '/submit');
         
         var formData = new FormData();
         formData.append('fileUpload',file);

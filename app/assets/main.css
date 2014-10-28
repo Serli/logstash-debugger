@@ -22,5 +22,13 @@ div {
 }
 
 #dropBox{
-    
+    height: 100px;
+}
+
+.ng-invalid.ng-dirty{
+    background-color: rgba(250,37,37,0.5);
+}
+
+.ng-valid.ng-dirty{
+    background-color: rgba(20,255,28,0.5);
 }

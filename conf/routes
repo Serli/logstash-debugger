@@ -3,8 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /form/submit                controllers.Application.submit()
-
+GET     /                           controllers.Application.index(title="Mostash")
+GET     /:title                     controllers.Application.index(title)
+POST     /submit                     controllers.Application.submit()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
