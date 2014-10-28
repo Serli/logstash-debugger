@@ -7,7 +7,10 @@ var XHR2Uploader = {
         progressBar.id = file.name;
         progressBar.max=file.size;
         progressBar.value=0;
-        insertAfter(progressBar,document.getElementById('fileUpload'));
+        progressBar.className="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2";
+        var fileUpload = document.getElementById('fileUpload');
+        fileUpload.className="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1";
+        insertAfter(progressBar, fileUpload);
         if(XHR2Uploader.xhr.readyState===0){
             XHR2Uploader.startUpload();
             console.log('upload');
