@@ -27,7 +27,7 @@
             <form class="col-sm-5" novalidate>
                 <div class='row borders'>
                     <h4>1. Entrez votre ligne de log</h4>
-                    <textarea ng-model='confForm.input'></textarea>
+                    <textarea ng-model='confForm.input' class"ng-invalid ng-dirty" required></textarea>
                 </div>
                 <div class='row'>
                     <p></p>
@@ -37,7 +37,7 @@
                     <div id='dropBox' class='col-sm-12' ></div>
                     <p>OU</p>
                     <input type='file' accept=".conf" id='fileUpload' class='col-sm-12' ng-model='confForm.confFile'/>
-                    <button ng-show='isDisabled()' ng-click='submit()'>{{confForm.isDisabled}}</button>
+                    <button  ng-click='submit()'>isDisabled()</button>
                     <p>{{confForm | json}}</p>
                 </div>
             </form>
@@ -52,9 +52,12 @@
             <p></p>
         </div>
         <footer class='row borders'>
-            <img class='col-sm-3'/>
+            <p>
+            </p>
+            <a href="http://www.serli.com/" class='col-sm-3'><img src="@routes.Assets.at("images/serli.png")"/></a>
             <p class='col-sm-6'>Le blabla du footer</p>
             <a href='https://github.com/Serli/logstash-debugger' class='col-sm-3'><img src="@routes.Assets.at("images/github.png")" class='round' /></a>
+            <p></p>
         </footer>
         
     </div>

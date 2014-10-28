@@ -8,7 +8,7 @@ app.controller('confStashController', function(){
     };
 
     this.isDisabled = function(){
-        return this.confForm.input === null;
+        return (this.confForm.input === null);
     };
     
 });
