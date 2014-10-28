@@ -1,28 +1,43 @@
-body{
-    background-color:rgb(204,202,207);
+
+.header {
+    height: 25%;
 }
 
-.borders{
-    box-shadow:-4px 4px 5px grey;
-    background-color:rgb(98,97,99);
-    overflow-y: hidden;
+.section {
+    height: 50%;
 }
-#test {
-    background-color: red;
-    height: 10%;
+
+.myFooter {
+    height: 25%;
 }
 
 
-.round {
-    border-radius: 50%;
+
+
+
+html {
+    height: 100%;
 }
 
-div {
-    padding: 5px 0px 0px 5px
+.headerItem {
+    display: inline-block; 
+    margin-left: 20%;
 }
 
-#dropBox{
-    height: 100px;
+
+
+#credits {
+    font-size: 0.9em;
+    vertical-align: bottom;
+}
+
+body {
+    background: url(images/mustach_background.jpg) no-repeat;/*Designed by freepik*/
+    -webkit-background-size: cover;
+}
+
+.pageItem {
+    background-color: rgba(203,201,214,0.8);
 }
 
 textarea.ng-invalid{
@@ -32,6 +47,11 @@ textarea.ng-invalid{
 textarea.ng-valid.ng-dirty{
     background-color: rgba(20,255,28,0.5);
 }
-aside {
-    height: 100%;
+
+input.ng-invalid{
+    background-color: rgba(250,37,37,0.5);
+}
+
+input.ng-valid.ng-dirty{
+    background-color: rgba(20,255,28,0.5);
 }
