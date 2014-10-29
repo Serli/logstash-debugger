@@ -2,13 +2,14 @@ var app = angular.module('confStash', []);
 
 app.controller('confStashController', function(){
 
-    this.confForm= {
-        input: null,
-        confFile: XHR2Uploader.file
+    this.input=null;
+
+    this.changeXHRTxt = function(){
+        XHR2Uploader.text=this.input;
     };
 
-    this.isDisabled = function(){
-        return (this.confForm.input === null);
+    this.submit = function(){
+        XHR2Uploader.uploadFile();
     };
 
 });

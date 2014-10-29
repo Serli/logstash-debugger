@@ -1,8 +1,3 @@
-
-.header {
-    height: 25%;
-}
-
 .section {
     height: 50%;
 }
@@ -31,11 +26,6 @@ html {
     vertical-align: bottom;
 }
 
-body {
-    background: url(images/mustach_background.jpg) no-repeat;/*Designed by freepik*/
-    background-size: cover;
-}
-
 .pageItem {
     background-color: rgba(203,201,214,0.8);
     box-shadow: -4px 4px 10px 2px grey;
@@ -49,12 +39,12 @@ textarea.ng-valid.ng-dirty{
     background-color: rgba(20,255,28,0.5);
 }
 
-input.ng-invalid{
-    background-color: rgba(250,37,37,0.5);
+input{
+    background-color: rgba(20,255,28,0.5);
 }
 
-input.ng-valid.ng-dirty{
-    background-color: rgba(20,255,28,0.5);
+input.ng-invalid{
+    background-color: rgba(250,37,37,0.5);
 }
 
 .button{

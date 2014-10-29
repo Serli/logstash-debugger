@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Application extends Controller {
@@ -21,6 +22,7 @@ public class Application extends Controller {
 
     public static Result submit() throws FileNotFoundException {
         RequestBody body = request().body();
+
         MultipartFormData mfd = body.asMultipartFormData();
         List<MultipartFormData.FilePart> l = mfd.getFiles();
         File f = l.get(0).getFile();
