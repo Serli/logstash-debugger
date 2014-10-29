@@ -7,9 +7,14 @@ var XHR2Uploader = {
         progressBar.id = file.name;
         progressBar.max=file.size;
         progressBar.value=0;
-        progressBar.className="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2";
         var fileUpload = document.getElementById('fileUpload');
-        fileUpload.className="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1";
+        if (fileUpload.style.visibility=='hidden'){
+            fileUpload.className = '';
+            progressBar.className="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-1";
+        }else {
+            fileUpload.className = "col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1";
+            progressBar.className="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2";
+        }
         insertAfter(progressBar, fileUpload);
         if(XHR2Uploader.xhr.readyState===0){
             XHR2Uploader.startUpload();
@@ -60,6 +65,8 @@ function settingDND(){
     dropZone.ondrop = function(e){
         e.preventDefault();
         if ('files' in e.dataTransfer){
+            document.getElementById('fileUpload').style.visibility = 'hidden';
+            document.getElementById('or').style.visibility = 'hidden';
             XHR2Uploader.addNewFile(e.dataTransfer.files[0]);
         }else{
             dropZone.innerHTML = '<p>Ce navigateur ne gère pas le drag\'n drop</p>';

@@ -30,6 +30,6 @@ public class Application extends Controller {
             output+=scan.next();
         }
 
-        return ok(output);
+        return redirect("/submit");
     }
 }

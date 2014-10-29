@@ -38,7 +38,7 @@ body {
 
 .pageItem {
     background-color: rgba(203,201,214,0.8);
-    box-shadow: -4px 4px 5px grey;
+    box-shadow: -4px 4px 10px 2px grey;
 }
 
 textarea.ng-invalid{
@@ -60,4 +60,11 @@ input.ng-valid.ng-dirty{
 .button{
     background-color: rgba(203,201,214,0.8);
     border: none;
+}
+
+.output{
+    background-color: white;
+    height: 315px;
+    margin-bottom: 10px;
+    box-shadow: 1px 0px 20px 2px grey inset;
 }
