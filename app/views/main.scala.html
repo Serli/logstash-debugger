@@ -1,7 +1,7 @@
 @(title: String)
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
     
     <head>
         <title>@title</title>
@@ -12,47 +12,50 @@
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/bootstrap.min.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/angular-1.3.0/angular.js")"></script>
-        <script type='text/javascript' src="@routes.Assets.at("javascripts/form/confFormController.js")"></script>
+        <script type='text/javascript' src="@routes.Assets.at("javascripts/app.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/main.js")"></script>
-</head>
     </head>
     
-    <body class='jumbotron' onload="init()" ng-app='confStash'>
+    <body class='jumbotron' onload="init()" ng-app='confStash' ng-controller="langController as lang">
         
         <header class='header row pageItem'>
-            <h1 class='headerItem text-center'>Mostash</h1>
-            <img src="@routes.Assets.at("images/mustach.png")" class='headerItem'/>
+            <h1 class='text-center headerItem'>Mostash</h1>
+            <img src="@routes.Assets.at("images/mustach.png")" class="headerItem"/>
+            <div class="headerItem">
+                <button class="button" data-ng-click="lang.changeLang(1)"><img src="@routes.Assets.at("images/french.png")" /></button>
+                <button class="button" data-ng-click="lang.changeLang(2)"><img src="@routes.Assets.at("images/english.png")" /></button>
+            </div>
+            <p class="row text-center">{{lang.text.subTitle}}</p>
         </header>
         
         <div class='row'>
             <p></p>
         </div>
         
-        <section class='section row' ng-controller='confStashController'>
+        <section class='section row' ng-controller='confStashController as conf'>
             
             <aside class='col-md-5 col-sm-5 col-xs-12  pageItem'>
                 
                 <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>1. Insert some lines of your log</h4>
-                    <textarea class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ng-invalid ng-dirty' ng-model='confForm.input' required></textarea>
+                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.first}}</h4>
+                    <textarea class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ng-invalid ng-dirty' ng-model='conf.confForm.input' required></textarea>
                 </div>
-                
                 <p class='row'></p>
                 
                 <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>2. Put in your .conf file</h4>
+                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.second}}</h4>
                     <div id='dropBox' class="col-xs-6 col-xs-offset-3">
-                        <img src="@routes.Assets.at("images/box.png")" class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-6 col-xs-offset-3'/>
+                        <img src="@routes.Assets.at("images/box.png")" class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-1'/>
                     </div>
-                    <p class="col-xs-6 col-xs-offset-3 text-center">OU</p>
-                    <input type='file' accept=".conf" id='fileUpload'  class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 ng-dirty ng-invalid" ng-model='confForm.confFile' required/>
+                    <p class="col-xs-6 col-xs-offset-3 text-center">{{lang.text.or}}</p>
+                    <input type='file' accept=".conf" id='fileUpload'  class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 ng-dirty ng-invalid" ng-model='conf.confForm.confFile' required/>
                 </div>
                 
             </aside>
             
             <aside class='col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12  pageItem'>
                 <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>3. Here's the result</h4>
+                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.third}}</h4>
                     <textarea class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'></textarea>
                 </div>
             </aside>
@@ -70,7 +73,7 @@
             <div id='credits' class='col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-6 col-xs-offset-3 text-center'>
                 Icons made by Freepik and Icomoon from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
             </div>
-            <a href='https://github.com/Serli/logstash-debugger' class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3'>
+            <a href='https://github.com/Serli/logstash-debugger' class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-4'>
                 <img src="@routes.Assets.at("images/github.png")" class='round' />
             </a>
         </footer>
