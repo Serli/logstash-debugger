@@ -1,7 +1,7 @@
 @(title: String)
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
     
     <head>
         <title>@title</title>
@@ -22,6 +22,7 @@
         <header class='header row pageItem'>
             <h1 class='headerItem text-center'>Mostash</h1>
             <img src="@routes.Assets.at("images/mustach.png")" class='headerItem'/>
+            <p class="row text-center">Testez votre configuration Logstash en ligne !</p>
         </header>
         
         <div class='row'>
@@ -33,14 +34,14 @@
             <aside class='col-md-5 col-sm-5 col-xs-12  pageItem'>
                 
                 <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>1. Insert some lines of your log</h4>
+                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>1. Rentrez au moins une ligne de log</h4>
                     <textarea class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ng-invalid ng-dirty' ng-model='confForm.input' required></textarea>
                 </div>
                 
                 <p class='row'></p>
                 
                 <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>2. Put in your .conf file</h4>
+                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>2. Insérez votre fichier .conf</h4>
                     <div id='dropBox' class="col-xs-6 col-xs-offset-3">
                         <img src="@routes.Assets.at("images/box.png")" class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-6 col-xs-offset-3'/>
                     </div>
@@ -52,7 +53,7 @@
             
             <aside class='col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12  pageItem'>
                 <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>3. Here's the result</h4>
+                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>3. Et voila le résultat ! =></h4>
                     <textarea class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1'></textarea>
                 </div>
             </aside>
