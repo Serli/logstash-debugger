@@ -11,20 +11,20 @@
     height: 25%;
 }
 
-
-
-
-
 html {
     height: 100%;
 }
 
 .headerItem {
-    display: inline-block; 
-    margin-left: 20%;
+    display: inline-block;
+    margin-left: 15%;
 }
 
-
+@media(max-width:767px){
+    .headerItem{
+        margin-left: 25%;
+    }
+}
 
 #credits {
     font-size: 0.9em;
@@ -38,6 +38,7 @@ body {
 
 .pageItem {
     background-color: rgba(203,201,214,0.8);
+    box-shadow: -4px 4px 5px grey;
 }
 
 textarea.ng-invalid{
@@ -54,4 +55,9 @@ input.ng-invalid{
 
 input.ng-valid.ng-dirty{
     background-color: rgba(20,255,28,0.5);
+}
+
+.button{
+    background-color: rgba(203,201,214,0.8);
+    border: none;
 }

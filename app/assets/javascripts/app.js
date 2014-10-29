@@ -17,10 +17,10 @@ app.controller('langController', function(){
 
     this.text=lang.fr;
 
-    this.changeLang = function(lang){
-        if (lang===1){
+    this.changeLang = function(e){
+        if (e===1){
             this.text=lang.fr;
-        }else if(lang===2){
+        }else if(e===2){
             this.text=lang.en;
         }
     };

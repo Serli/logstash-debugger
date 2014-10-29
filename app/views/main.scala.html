@@ -19,9 +19,12 @@
     <body class='jumbotron' onload="init()" ng-app='confStash' ng-controller="langController as lang">
         
         <header class='header row pageItem'>
-            <h1 class='headerItem text-center'>Mostash</h1>
-            <img src="@routes.Assets.at("images/mustach.png")" class='headerItem'/>
-
+            <h1 class='text-center headerItem'>Mostash</h1>
+            <img src="@routes.Assets.at("images/mustach.png")" class="headerItem"/>
+            <div class="headerItem">
+                <button class="button" data-ng-click="lang.changeLang(1)"><img src="@routes.Assets.at("images/french.png")" /></button>
+                <button class="button" data-ng-click="lang.changeLang(2)"><img src="@routes.Assets.at("images/english.png")" /></button>
+            </div>
             <p class="row text-center">{{lang.text.subTitle}}</p>
         </header>
         
@@ -42,7 +45,7 @@
                 <div class='row'>
                     <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.second}}</h4>
                     <div id='dropBox' class="col-xs-6 col-xs-offset-3">
-                        <img src="@routes.Assets.at("images/box.png")" class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-6 col-xs-offset-3'/>
+                        <img src="@routes.Assets.at("images/box.png")" class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-1'/>
                     </div>
                     <p class="col-xs-6 col-xs-offset-3 text-center">{{lang.text.or}}</p>
                     <input type='file' accept=".conf" id='fileUpload'  class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 ng-dirty ng-invalid" ng-model='conf.confForm.confFile' required/>
@@ -70,7 +73,7 @@
             <div id='credits' class='col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-6 col-xs-offset-3 text-center'>
                 Icons made by Freepik and Icomoon from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
             </div>
-            <a href='https://github.com/Serli/logstash-debugger' class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3'>
+            <a href='https://github.com/Serli/logstash-debugger' class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-4'>
                 <img src="@routes.Assets.at("images/github.png")" class='round' />
             </a>
         </footer>
