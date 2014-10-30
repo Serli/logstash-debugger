@@ -9,80 +9,96 @@
         <link rel='icon' href="@routes.Assets.at("images/favicon.png")">
         <link rel='stylesheet' media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
         <link rel='stylesheet' media="screen" href="@routes.Assets.at("main.css")">
+    </head>
+    
+    <body onload="init()" ng-app='confStash' ng-controller="langController as lang">
+
+        <nav class="navbar navbar-default pageItem" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="@routes.Assets.at("images/mustach.png")"/></a>
+                    <h2 class="navbar-text">Mostash</h2>
+                    <p class="navbar-text">{{lang.text.subTitle}}</p>
+                </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><button class="navbar-btn button" data-ng-click="lang.changeLang(1)"><img src="@routes.Assets.at("images/french.png")" /></button></li>
+                        <li><button class="navbar-btn button" data-ng-click="lang.changeLang(2)"><img src="@routes.Assets.at("images/english.png")" /></button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="container" ng-controller="confStashController as conf">
+
+            <div class="row">
+
+                <article class="col-md-6">
+                    <div class="pageItem">
+                        <h4 class='text-center'>{{lang.text.first}}</h4>
+                        <textarea class='form-control ng-invalid ng-dirty' ng-model='conf.input' ng-change="conf.changeXHRTxt()" required></textarea>
+                    </div>
+                </article>
+
+                <article class="col-md-6">
+                    <div class="pageItem">
+                        <h4 class='text-center'>{{lang.text.second}}</h4>
+                        <img id='dropBox' src="@routes.Assets.at("images/box.png")" class='img-responsive center-block'/>
+                        <p id="or" class="text-center">{{lang.text.or}}</p>
+                        <input type='file' accept=".conf" id='fileUpload'  class="form-control ng-invalid" required/>
+                        <button class="btn btn-default btn-sm center-block" ng-hide="conf.submitEnabled()" data-ng-click="conf.submit()">Go !</button>
+                        <progress id='uploadProgress' class="form-control" value="0" max="0"></progress>
+                    </div>
+                </article>
+
+            </div>
+            <div class="row">
+
+                <article class="col-md-6">
+                    <div class="pageItem">
+                        <h4 class='text-center'>{{lang.text.third}}</h4>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </article>
+
+                <article class="col-md-6">
+                    <div class="pageItem">
+                        <h4 class='text-center'>{{lang.text.fourth}}</h4>
+                        <div class='output'></div>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <footer class='container-fluid pageItem'>
+            <a href="http://www.serli.com/" class='img-responsive pull-left'>
+                <img src="@routes.Assets.at("images/serli.png")"/>
+            </a>
+            <div id='credits' class='text-center'>
+                Icons made by Freepik and Icomoon from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+            </div>
+            <a href='https://github.com/Serli/logstash-debugger' class='img-responsive pull-right'>
+                <img src="@routes.Assets.at("images/github.png")" class="round"/>
+            </a>
+        </footer>
+
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/jquery-1.11.1.min.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/bootstrap.min.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/vendor/angular-1.3.0/angular.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/app.js")"></script>
         <script type='text/javascript' src="@routes.Assets.at("javascripts/main.js")"></script>
-    </head>
-    
-    <body class='jumbotron' onload="init()" ng-app='confStash' ng-controller="langController as lang">
 
-        <header class='header row pageItem'>
-            <h2 class='text-center headerItem'>Mostash</h2>
-            <img src="@routes.Assets.at("images/mustach.png")" class="headerItem"/>
-            <div class="headerItem">
-                <button class="button" data-ng-click="lang.changeLang(1)"><img src="@routes.Assets.at("images/french.png")" /></button>
-                <button class="button" data-ng-click="lang.changeLang(2)"><img src="@routes.Assets.at("images/english.png")" /></button>
-            </div>
-            <p class="row text-center">{{lang.text.subTitle}}</p>
-        </header>
-        
-        <div class='row'>
-            <p></p>
-        </div>
-        
-        <section class='section row' ng-controller='confStashController as conf'>
-            
-            <aside class='col-md-5 col-sm-5 col-xs-12  pageItem'>
-                
-                <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.first}}</h4>
-                    <textarea class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 ng-invalid ng-dirty' ng-model='conf.input' ng-change="conf.changeXHRTxt()" required></textarea>
-                </div>
-                <p class='row'></p>
-                
-                <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.second}}</h4>
-                    <div id='dropBox' class="col-xs-6 col-xs-offset-3">
-                        <img src="@routes.Assets.at("images/box.png")" class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-1'/>
-                    </div>
-                    <p id="or" class="col-xs-6 col-xs-offset-3 text-center">{{lang.text.or}}</p>
-                    <input type='file' accept=".conf" id='fileUpload'  class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 ng-invalid" required/>
-                </div>
-                <p class='row'></p>
-                <div class="row">
-                    <button data-ng-click="conf.submit()">Go !</button>
-                </div>
-                
-            </aside>
-            
-            <aside class='col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12  pageItem'>
-                <div class='row'>
-                    <h4 class='col-xs-6 col-xs-offset-3 text-center'>{{lang.text.third}}</h4>
-                    <div class='col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 output'></div>
-                </div>
-            </aside>
-            
-        </section>
-        
-        <div class='row'>
-            <p></p>
-        </div>
-        
-        <footer class='myFooter row  pageItem'>
-            <a href="http://www.serli.com/" class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3 '>
-                <img src="@routes.Assets.at("images/serli.png")"/>
-            </a>
-            <div id='credits' class='col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-6 col-xs-offset-3 text-center'>
-                Icons made by Freepik and Icomoon from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
-            </div>
-            <a href='https://github.com/Serli/logstash-debugger' class='col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-4'>
-                <img src="@routes.Assets.at("images/github.png")" class='round' />
-            </a>
-        </footer>
-        
     </body>
     
 </html>
