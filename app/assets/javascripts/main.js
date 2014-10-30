@@ -5,7 +5,6 @@ var XHR2Uploader = {
     addNewFile: function(theFile){
         this.file = theFile;
         if (this.text===null){
-
         }else{
             this.uploadFile();
         }
@@ -13,23 +12,11 @@ var XHR2Uploader = {
     uploadFile: function(){
 
         if (this.file===null){
-            alert('no !');
         }else {
-            var progressBar = document.createElement('PROGRESS');
-            progressBar.id = this.file.name;
-            progressBar.max = this.file.size;
-            progressBar.value = 0;
-            var fileUpload = document.getElementById('fileUpload');
-            if (fileUpload.style.visibility == 'hidden') {
-                fileUpload.className = '';
-                progressBar.className = "col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-1";
-            } else {
-                fileUpload.className = "col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1";
-                progressBar.className = "col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2";
-            }
-            insertAfter(progressBar, fileUpload);
-            alert('4');
-            if (XHR2Uploader.xhr.readyState === 0) {
+            var progress = document.getElementById('uploadProgress');
+            progress.max = this.file.size;
+
+            if (XHR2Uploader.xhr.readyState === 0 || XHR2Uploader.xhr.readyState === 4) {
                 XHR2Uploader.startUpload();
                 console.log('upload');
             }
@@ -42,17 +29,17 @@ var XHR2Uploader = {
         formData.append('fileUpload',this.file);
         
         XHR2Uploader.xhr.send(formData);
-        alert('send');
+        console.log('sent');
     },
-    onUploading:function(e){
-        var progressBar = document.getElementById(this.file.name);
-        progressBar.value = e.loaded;
-        progressBar.innerHTML = Math.round((progressBar.value/progressBar.max)*100)+'%';
+
+    onUploading: function(e){
+        var progress = document.getElementById('uploadProgress');
+        progress.value = (e.loaded/ e.total);
     },
-    onUploaded:function(e){
-        var progressBar = document.getElementById(this.file.name);
-        progressBar.value = file.size;
-        progressBar.innerHTML = 'Upload terminé';
+
+    onUploaded:function(e) {
+        var progress = document.getElementById('uploadProgress');
+        progress.value = e.loaded;
     }
 };
 
@@ -62,13 +49,12 @@ XHR2Uploader.xhr.onload = XHR2Uploader.onUploaded;
 function init(){
     document.getElementById('fileUpload').onchange = function(){
         XHR2Uploader.addNewFile(this.files[0]);
-        this.className='col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3';
         console.log('changed');
     };
-    settingDND();
+    settingDragNDrop();
 }
 
-function settingDND(){
+function settingDragNDrop(){
     var dropZone = document.getElementById("dropBox");
 
     dropZone.ondragover = function(e){
@@ -81,9 +67,9 @@ function settingDND(){
     dropZone.ondrop = function(e){
         e.preventDefault();
         if ('files' in e.dataTransfer){
-            document.getElementById('fileUpload').style.visibility = 'hidden';
-            document.getElementById('or').style.visibility = 'hidden';
+            document.getElementById('fileUpload').className='form-control';
             XHR2Uploader.addNewFile(e.dataTransfer.files[0]);
+            alert(""+XHR2Uploader.xhr.readyState);
         }else{
             dropZone.innerHTML = '<p>Ce navigateur ne gère pas le drag\'n drop</p>';
         }

@@ -4,8 +4,13 @@ app.controller('confStashController', function(){
 
     this.input=null;
 
+    this.submitEnabled=function(){
+        return (this.input===null || XHR2Uploader.file === null);
+    };
+
     this.changeXHRTxt = function(){
         XHR2Uploader.text=this.input;
+        this.submitEnabled();
     };
 
     this.submit = function(){
@@ -31,17 +36,19 @@ app.controller('langController', function(){
 var lang = {
     fr: {
         subTitle: 'Testez votre configuration Logstash en ligne !',
-        first: '1. Rentrez au moins une ligne de log',
+        first: '1. Rentrez (au moins) une ligne de log',
         second: '2. Insérez votre fichier .conf',
-        third: '3. Et voila le résultat !',
+        third: '3. Contenu du fichier',
+        fourth: '4. Et voila le résultat !',
         or: 'OU'
     },
 
     en: {
         subTitle: 'Test your Logstash configuration online !',
-        first: '1. Enter at least one line of log',
+        first: '1. Enter at least one log line',
         second: '2. Insert your .conf file',
-        third: '3. And here\'s the result !',
+        third: '3. File\'s content',
+        fourth: '4. Here is the result !',
         or: 'OR'
     }
 };
