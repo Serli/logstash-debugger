@@ -1,22 +1,74 @@
+@media(max-width:767px){
+    nav li{
+        display: inline-block;
+        float: right;
+    }
+}
+
 body{
-    background-color:rgb(204,202,207);
+    background-color: rgb(203,201,214);
 }
 
-.borders{
-    box-shadow:-4px 4px 5px grey;
-    background-color:rgb(98,97,99);
-    overflow-y: hidden;
-}
-#test {
-    background-color: red;
-    height: 10%;
+#credits {
+    font-size: 0.9em;
 }
 
-
-.round {
-    border-radius: 50%;
+.pageItem {
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    min-height: 220px;
 }
 
-div {
-    padding: 5px 0px 0px 5px
+nav.pageItem{
+    min-height: 0;
+}
+
+textarea.ng-invalid{
+    background-color: rgba(250,37,37,0.5);
+}
+
+textarea.ng-valid.ng-dirty{
+    background-color: rgba(20,255,28,0.5);
+}
+
+input{
+    background-color: rgba(20,255,28,0.5);
+}
+
+input.ng-invalid{
+    background-color: rgba(250,37,37,0.5);
+}
+
+.button{
+    background-color: white;
+    border: none;
+}
+
+.output{
+    background-color: white;
+    height: 220px;
+    max-height: 220px;
+    margin-bottom: 10px;
+    box-shadow: 1px 0px 20px 2px grey inset;
+}
+
+.form-control{
+    height: auto;
+}
+
+footer.pageItem{
+    margin: 0;
+    min-height: 0;
+}
+
+textarea{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 190px;
+    max-height: 190px;
+}
+
+#uploadProgress{
+    color: lime;
+    margin-top: 20px;
 }
