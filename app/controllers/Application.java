@@ -16,22 +16,17 @@ public class Application extends Controller {
 
     //Normalizer.Form<LogstashConfiguration> configForm = Normalizer.Form.form(LogstashConfiguration.class);
 
-    public static Result index(String title) {
-        return ok(index.render(title));
+    public static Result index() {
+        return ok(main.render());
     }
 
     public static Result submit() throws FileNotFoundException {
         RequestBody body = request().body();
-
         MultipartFormData mfd = body.asMultipartFormData();
-        List<MultipartFormData.FilePart> l = mfd.getFiles();
-        File f = l.get(0).getFile();
-        Scanner scan = new Scanner(f);
+        Map<java.lang.String,java.lang.String[]> input = mfd.asFormUrlEncoded();
         String output = "";
-        while(scan.hasNext()){
-            output+=scan.next();
-        }
+        output=input.get("input")[0]+" "+input.get("config")[0];
 
-        return redirect("/submit");
+        return ok(output);
     }
 }

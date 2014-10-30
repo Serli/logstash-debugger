@@ -1,10 +1,9 @@
-@(title: String)
 <!DOCTYPE html>
 
 <html lang="fr">
     
     <head>
-        <title>@title</title>
+        <title>Mostash</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel='icon' href="@routes.Assets.at("images/favicon.png")">
         <link rel='stylesheet' media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
@@ -44,17 +43,18 @@
                 <article class="col-md-6">
                     <div class="pageItem">
                         <h4 class='text-center'>{{lang.text.first}}</h4>
-                        <textarea class='form-control ng-invalid ng-dirty' ng-model='conf.input' ng-change="conf.changeXHRTxt()" required></textarea>
+                        <textarea id='input' class='form-control ng-invalid ng-dirty' ng-model='conf.input' ng-change="conf.changeXHRTxt()" required></textarea>
                     </div>
                 </article>
 
                 <article class="col-md-6">
                     <div class="pageItem">
                         <h4 class='text-center'>{{lang.text.second}}</h4>
-                        <img id='dropBox' src="@routes.Assets.at("images/box.png")" class='img-responsive center-block'/>
+                        <div id="dropBox">
+                            <img src="@routes.Assets.at("images/box.png")" class='img-responsive center-block' />
+                        </div>
                         <p id="or" class="text-center">{{lang.text.or}}</p>
                         <input type='file' accept=".conf" id='fileUpload'  class="form-control ng-invalid" required/>
-                        <button class="btn btn-default btn-sm center-block" ng-hide="conf.submitEnabled()" data-ng-click="conf.submit()">Go !</button>
                         <progress id='uploadProgress' class="form-control" value="0" max="0"></progress>
                     </div>
                 </article>
@@ -65,7 +65,8 @@
                 <article class="col-md-6">
                     <div class="pageItem">
                         <h4 class='text-center'>{{lang.text.third}}</h4>
-                        <textarea class="form-control"></textarea>
+                        <textarea id="confContent" class="form-control"></textarea>
+                        <button class="btn btn-default btn-sm center-block" ng-hide="conf.submitEnabled()" data-ng-click="conf.submit()">Go !</button>
                     </div>
                 </article>
 

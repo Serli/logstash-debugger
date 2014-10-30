@@ -4,10 +4,16 @@ var XHR2Uploader = {
     file:null,
     addNewFile: function(theFile){
         this.file = theFile;
-        if (this.text===null){
-        }else{
-            this.uploadFile();
-        }
+
+        var reader = new FileReader();
+        reader.readAsText(this.file);
+
+        reader.onloadend=function() {
+            if (reader.readyState==reader.DONE) {
+                document.getElementById('confContent').value=reader.result;
+            }
+        };
+
     },
     uploadFile: function(){
 
@@ -26,15 +32,17 @@ var XHR2Uploader = {
         XHR2Uploader.xhr.open('POST', '/submit');
         
         var formData = new FormData();
-        formData.append('fileUpload',this.file);
-        
+        formData.append('input',this.text);
+        formData.append('config',document.getElementById('confContent').value);
+
         XHR2Uploader.xhr.send(formData);
         console.log('sent');
     },
 
     onUploading: function(e){
         var progress = document.getElementById('uploadProgress');
-        progress.value = (e.loaded/ e.total);
+        progress.value = e.loaded;
+        progress.max = e.total;
     },
 
     onUploaded:function(e) {
@@ -47,6 +55,7 @@ XHR2Uploader.xhr.upload.onprogress = XHR2Uploader.onUploading;
 XHR2Uploader.xhr.onload = XHR2Uploader.onUploaded;
 
 function init(){
+    document.getElementById('confContent').value='';
     document.getElementById('fileUpload').onchange = function(){
         XHR2Uploader.addNewFile(this.files[0]);
         console.log('changed');
@@ -61,7 +70,6 @@ function settingDragNDrop(){
         e.dataTransfer.effectAllowed = 'copy';
         e.dataTransfer.dropEffect = 'copy';
         e.preventDefault();
-        console.log('dragover');
     };
 
     dropZone.ondrop = function(e){
@@ -69,19 +77,7 @@ function settingDragNDrop(){
         if ('files' in e.dataTransfer){
             document.getElementById('fileUpload').className='form-control';
             XHR2Uploader.addNewFile(e.dataTransfer.files[0]);
-            alert(""+XHR2Uploader.xhr.readyState);
         }else{
-            dropZone.innerHTML = '<p>Ce navigateur ne gère pas le drag\'n drop</p>';
         }
     };
-}
-
-function insertAfter(newElement, afterElement) {
-    var parent = afterElement.parentNode;
-	
-    if (parent.lastChild === afterElement) {
-        parent.appendChild(newElement);
-    } else {
-        parent.insertBefore(newElement, afterElement.nextSibling);
-    }
 }

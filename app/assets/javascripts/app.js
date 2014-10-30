@@ -9,7 +9,7 @@ app.controller('confStashController', function(){
     };
 
     this.changeXHRTxt = function(){
-        XHR2Uploader.text=this.input;
+        XHR2Uploader.text = document.getElementById('input').value;
         this.submitEnabled();
     };
 
